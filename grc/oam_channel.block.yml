@@ -1,0 +1,83 @@
+id: oam_channel
+label: OAM Channel
+category: '[OAM]'
+
+parameters:
+- id: propagation_distance
+  label: Distance (m)
+  dtype: real
+  default: 340
+- id: cn2
+  label: Cₙ² (log₁₀)
+  dtype: real
+  default: -14.1
+- id: snr_target
+  label: SNR Target (dB)
+  dtype: real
+  default: 30
+
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+
+templates:
+  imports: from oam_channel_wr import oam_channel_wr
+  make: |-
+    oam_channel_wr(
+        propagation_distance=${propagation_distance},
+        cn2=10**${cn2},
+        snr_target=${snr_target}
+    )
+
+documentation: |-
+  OAM Channel Configuration Block
+
+  This block configures the atmospheric free-space optical channel parameters.
+  Pipeline execution is performed by the OAM Source block.
+
+  Channel Parameters:
+    - Distance: Propagation distance TX-RX in meters (1-1000 m)
+                Typical values: 10m (lab), 50-100m (outdoor short), 500m+ (long range)
+
+    - Cₙ²: Atmospheric turbulence strength (refractive index structure constant)
+           Value in log₁₀ scale: -17 to -13 (actual: 10⁻¹⁷ to 10⁻¹³ m⁻²/³)
+
+           Typical scenarios:
+           • -17 (10⁻¹⁷): Laboratory/indoor (negligible turbulence)
+           • -15 (10⁻¹⁵): Clear outdoor day (weak turbulence)
+           • -14 (10⁻¹⁴): Moderate turbulence (daytime, moderate wind)
+           • -13 (10⁻¹³): Strong turbulence (high thermal activity)
+
+    - SNR Target: Target signal-to-noise ratio in dB (10-60 dB)
+                  Higher SNR = cleaner signal, lower BER
+                  Typical: 25-35 dB for realistic outdoor links
+
+  Effects simulated: Kolmogorov turbulence, beam wander, scintillation, AWGN noise
+
+  Configuration Presets:
+    ┌──────────────────┬──────────┬─────────┬──────────┬─────────────┐
+    │ Scenario         │ Dist (m) │ Cₙ²(log)│ SNR (dB) │ Expected BER│
+    ├──────────────────┼──────────┼─────────┼──────────┼─────────────┤
+    │ Lab Indoor       │   5-10   │   -17   │  40-50   │   < 10⁻⁶    │
+    │ Clean Outdoor    │   50     │   -17   │  35-40   │   < 10⁻⁵    │
+    │ Weak Turbulence  │   50     │   -15   │  30-35   │   ~ 10⁻⁴    │
+    │ Moderate Turb.   │  100     │   -14   │  25-30   │   ~ 10⁻³    │
+    │ Strong Turb.     │  100     │   -13   │  20-25   │   ~ 10⁻²    │
+    │ Long Range       │  500+    │   -15   │  25-30   │   ~ 10⁻³    │
+    │ Stress Test      │  100     │   -13   │   20     │   > 10⁻²    │
+    └──────────────────┴──────────┴─────────┴──────────┴─────────────┘
+
+  Rules of Thumb:
+    • Cₙ² -17: Ideal conditions (lab/clear night)
+    • Cₙ² -15: Typical clear day
+    • Cₙ² -13: Challenging conditions (daytime thermal turbulence)
+    • Every 10 dB SNR improvement ≈ 1 order of magnitude BER reduction
+    • Distance doubling ≈ 6 dB geometric loss (not including turbulence)
+
+file_format: 1

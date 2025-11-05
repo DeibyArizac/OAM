@@ -1,0 +1,37 @@
+SISTEMA OAM - GNU RADIO
+=======================
+
+Instalación Rápida para Otros PCs Ubuntu
+-----------------------------------------
+
+1. Copiar esta carpeta completa a /opt/:
+   sudo cp -r OAM_System /opt/
+
+2. Ejecutar script de instalación:
+   cd /opt/OAM_System
+   ./install.sh
+
+3. Instalar dependencias Python:
+   pip3 install -r requirements.txt
+
+4. Abrir GNU Radio Companion:
+   gnuradio-companion
+
+5. Abrir flowgraph de ejemplo:
+   Archivo → Abrir → /opt/OAM_System/oam_complete_flowgraph.grc
+
+6. Ejecutar (botón Play o F6)
+
+NOTA: Requiere GNU Radio 3.10+ preinstalado
+      sudo apt install gnuradio python3-gnuradio
+
+Contacto:
+---------
+Deiby Fernando Ariza Cadena
+deibyarizac@gmail.com
+https://github.com/DeibyArizac/OAM
+
+Director: Dr. Omar Javier Tíjaro Rojas
+ojtijaro@uis.edu.co
+
+Universidad Industrial de Santander - E³T

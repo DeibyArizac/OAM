@@ -1,0 +1,96 @@
+id: oam_encoder
+label: OAM Encoder
+category: '[OAM]'
+
+parameters:
+- id: num_oam_modes
+  label: OAM Modes (#)
+  dtype: int
+  default: 6
+  options: [2, 4, 6, 8]
+  hide: none
+- id: wavelength
+  label: Wavelength (nm)
+  dtype: real
+  default: 1550
+  hide: none
+- id: tx_power
+  label: TX Power (mW)
+  dtype: real
+  default: 10
+  hide: none
+- id: tx_aperture_size
+  label: TX Aperture (mm)
+  dtype: real
+  default: 20
+  hide: none
+- id: grid_size
+  label: Grid Size (px)
+  dtype: int
+  default: 512
+  options: [256, 512, 1024]
+  hide: none
+
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+
+templates:
+  imports: from oam_encoder_wr import oam_encoder_wr
+  make: |-
+    oam_encoder_wr(
+        num_oam_modes=${num_oam_modes},
+        wavelength=${wavelength}e-9,
+        tx_power=${tx_power}e-3,
+        tx_aperture_size=${tx_aperture_size}e-3,
+        grid_size=${grid_size}
+    )
+
+documentation: |-
+  OAM Encoder Configuration Block
+
+  This block configures the OAM encoder parameters.
+  Pipeline execution is performed by the OAM Source block.
+
+  Encoder Parameters:
+    - OAM Modes: Number of OAM channels (2, 4, 6, or 8)
+                 Sign-keying system uses symmetric modes ±ℓ (mode 0 excluded):
+                 • 2 modes → ±1        (1 bit/symbol)
+                 • 4 modes → ±1, ±2    (2 bits/symbol)
+                 • 6 modes → ±1, ±2, ±3    (3 bits/symbol)
+                 • 8 modes → ±1, ±2, ±3, ±4 (4 bits/symbol)
+
+    - Wavelength: Laser wavelength in nanometers (400-2000 nm)
+                  Common values: 630 nm (red), 1550 nm (telecom IR)
+
+    - TX Power: Transmitter optical power in milliwatts (0.1-100 mW)
+                Typical: 10 mW for lab, 100 mW for outdoor
+
+    - TX Aperture: Transmitter aperture diameter in millimeters (5-50 mm)
+                   Must be larger than beam waist to avoid truncation
+
+    - Grid Size: Computational grid resolution (256, 512, or 1024)
+                 Higher resolution = more accurate but slower
+                 Recommended: 512 for standard simulations
+                 Computation time scales as O(N²): 1024 = 4× slower than 512
+
+  Note: Visual connection only - data flows through internal pipeline.
+
+  Configuration Presets:
+    ┌────────────────┬───────┬────────┬──────────┬──────────┬──────────┐
+    │ Scenario       │ Modes │ λ (nm) │ Power(mW)│ Aper(mm) │ Grid(px) │
+    ├────────────────┼───────┼────────┼──────────┼──────────┼──────────┤
+    │ Lab Demo       │   2   │  630   │    10    │    35    │   512    │
+    │ Standard Test  │   4   │  630   │    10    │    35    │   512    │
+    │ High Capacity  │   6   │  630   │    20    │    40    │   512    │
+    │ Outdoor Link   │   4   │  1550  │   100    │    50    │   512    │
+    │ Research Mode  │   8   │  630   │    10    │    35    │  1024    │
+    └────────────────┴───────┴────────┴──────────┴──────────┴──────────┘
+
+file_format: 1

@@ -1,0 +1,94 @@
+id: oam_decoder
+label: OAM Decoder
+category: '[OAM]'
+
+parameters:
+- id: rx_aperture_size
+  label: RX Aperture (mm)
+  dtype: real
+  default: 80
+- id: grid_size
+  label: Grid Size (px)
+  dtype: int
+  default: 512
+  options: [256, 512, 1024]
+- id: correlation_threshold
+  label: Corr Threshold (0-1)
+  dtype: real
+  default: 0.1
+- id: detection_method
+  label: Detection Method
+  dtype: string
+  default: 'ncc'
+  options: ['ncc', 'power', 'hybrid']
+  option_labels: ['NCC', 'Power', 'Hybrid']
+
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+
+templates:
+  imports: from oam_decoder_wr import oam_decoder_wr
+  make: |-
+    oam_decoder_wr(
+        rx_aperture_size=${rx_aperture_size}e-3,
+        grid_size=${grid_size},
+        correlation_threshold=${correlation_threshold},
+        detection_method=${detection_method}
+    )
+
+documentation: |-
+  OAM Decoder Configuration Block
+
+  This block configures the OAM decoder parameters.
+  Pipeline execution is performed by the OAM Source block.
+
+  Decoder Parameters:
+    - RX Aperture: Receiver aperture diameter in millimeters (10-100 mm)
+                   Must be large enough to capture expanded beam at distance
+                   Rule of thumb: RX aperture ≥ 3-4× TX aperture for long distances
+                   Typical: 35-80 mm for 50-500m links
+
+    - Grid Size: Computational grid resolution (256, 512, or 1024)
+                 Should match encoder grid size for consistency
+                 Higher resolution = better mode separation
+
+    - Correlation Threshold: Minimum normalized correlation for valid detection (0.0-1.0)
+                             Lower threshold = more sensitive but more false positives
+                             Typical: 0.1-0.3 depending on noise level
+
+    - Detection Method: OAM mode detection algorithm
+      • NCC: Normalized Cross-Correlation (recommended)
+             Robust to noise, best for turbulent channels
+      • Power: Power-based detection
+               Faster but less robust in noisy conditions
+      • Hybrid: Combines NCC and power metrics
+                Experimental, use for comparison studies
+
+  Detection process: Matched filter with Laguerre-Gaussian templates
+
+  Configuration Presets:
+    ┌──────────────────┬──────────┬──────────┬───────────┬──────────┐
+    │ Scenario         │ RX Ap(mm)│ Grid(px) │ Threshold │ Method   │
+    ├──────────────────┼──────────┼──────────┼───────────┼──────────┤
+    │ Lab Short Range  │    35    │   512    │    0.15   │   NCC    │
+    │ Outdoor 50-100m  │    70    │   512    │    0.15   │   NCC    │
+    │ Long Range 500m+ │    80    │   512    │    0.10   │   NCC    │
+    │ High Noise       │    70    │   512    │    0.20   │   NCC    │
+    │ Fast Processing  │    35    │   256    │    0.15   │  Power   │
+    │ Research Study   │    70    │  1024    │    0.15   │  Hybrid  │
+    └──────────────────┴──────────┴──────────┴───────────┴──────────┘
+
+  Guidelines:
+    • RX Aperture ≥ 3× TX Aperture for distances > 100m
+    • Lower threshold = more sensitive but more false detections
+    • NCC method recommended for turbulent channels (Cn² ≥ 10⁻¹⁵)
+    • Match grid size with encoder for consistency
+
+file_format: 1

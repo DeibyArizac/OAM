@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-10-28T09:22:39.454026",
+  "hardware": "AMD Ryzen 5 5600H, 12 cores",
+  "results_ms": {
+    "lg_beam_ms": 20.78,
+    "phase_screen_first_ms": 37.49,
+    "phase_screen_cached_ms": 1.04,
+    "projection_8modes_ms": 14.6,
+    "symbol_complete_ms": 124.68,
+    "message_10symbols_ms": 1246.81
+  },
+  "thesis_reference_ms": {
+    "lg_beam_ms": 5,
+    "phase_screen_first_ms": 15,
+    "phase_screen_cached_ms": 0.5,
+    "projection_8modes_ms": 40,
+    "symbol_complete_ms": 80,
+    "message_10symbols_ms": 800
+  },
+  "ratios": {
+    "lg_beam": 4.16,
+    "phase_screen": 2.5,
+    "projection": 0.37,
+    "symbol": 1.56,
+    "message": 1.56
+  }
+}

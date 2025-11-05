@@ -1,0 +1,132 @@
+id: oam_visualizer
+label: OAM Visualizer
+category: '[OAM]'
+
+parameters:
+- id: enable_dashboard_a
+  label: Dashboard A (on/off)
+  dtype: enum
+  default: 'True'
+  options: ['True', 'False']
+  option_labels: ['Enable', 'Disable']
+- id: enable_dashboard_b
+  label: Dashboard B (on/off)
+  dtype: enum
+  default: 'True'
+  options: ['True', 'False']
+  option_labels: ['Enable', 'Disable']
+- id: enable_dashboard_c
+  label: Dashboard C (on/off)
+  dtype: enum
+  default: 'True'
+  options: ['True', 'False']
+  option_labels: ['Enable', 'Disable']
+- id: enable_dashboard_d
+  label: Dashboard D (on/off)
+  dtype: enum
+  default: 'True'
+  options: ['True', 'False']
+  option_labels: ['Enable', 'Disable']
+- id: enable_dashboard_e
+  label: Dashboard E (on/off)
+  dtype: enum
+  default: 'True'
+  options: ['True', 'False']
+  option_labels: ['Enable', 'Disable']
+- id: dashboard_step_delay
+  label: Step Delay (s)
+  dtype: real
+  default: 3.0
+
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+
+templates:
+  imports: from oam_visualizer_wr import oam_visualizer_wr
+  make: |-
+    oam_visualizer_wr(
+        enable_dashboard_a=${enable_dashboard_a},
+        enable_dashboard_b=${enable_dashboard_b},
+        enable_dashboard_c=${enable_dashboard_c},
+        enable_dashboard_d=${enable_dashboard_d},
+        enable_dashboard_e=${enable_dashboard_e},
+        dashboard_step_delay=${dashboard_step_delay}
+    )
+
+documentation: |-
+  OAM Visualizer Configuration Block
+
+  This block configures visualization and analysis dashboards.
+  Dashboards are launched automatically by the OAM Source block after simulation.
+
+  Available Dashboards:
+
+    Dashboard A: Temporal Field Analysis (Dynamic Loop)
+      • Compares optical fields before and after atmospheric channel
+      • Symbol-by-symbol progression with intensity and phase visualization
+      • Real-time field evolution tracking
+      • Use case: Understanding channel effects on beam structure
+
+    Dashboard B: Quality Assurance Metrics (Dynamic Loop)
+      • SNR tracking per symbol
+      • BER (Bit Error Rate) evolution
+      • NCC (Normalized Cross-Correlation) by OAM mode magnitude
+      • Modal mixing analysis with crosstalk visualization
+      • Use case: Performance evaluation and link quality assessment
+
+    Dashboard C: Detailed Symbol Snapshot (Static View)
+      • In-depth analysis of a specific symbol (default: symbol #13)
+      • Modal decomposition visualization
+      • Intensity profiles and phase maps
+      • Correlation matrices for all modes
+      • Use case: Debugging and detailed investigation
+
+    Dashboard D: Modal Stream Analysis (Dynamic Loop)
+      • Real-time modal component separation
+      • Sign detection confidence metrics (+/- mode discrimination)
+      • Modal power distribution tracking
+      • Dominant mode identification with triangular aperture method
+      • Use case: Understanding mode detection process
+
+    Dashboard E: Global Metrics Summary (Static View)
+      • System-level performance overview
+      • Atmospheric condition monitoring
+      • Turbulence effect quantification
+      • Comprehensive quality assessment with final BER/SNR
+      • Use case: Quick results overview and reporting
+
+  Parameters:
+    - Enable Dashboard X: Enable/disable each dashboard (True/False)
+                          Disable unused dashboards to speed up execution
+                          Dashboard E is CPU-intensive, enable only when needed
+
+    - Step Delay: Time delay between symbols in dynamic dashboards (seconds)
+                  Range: 0.5-5.0 seconds
+                  Recommended: 3.0s for comfortable viewing
+                  Lower values = faster playback but harder to follow
+
+  Note: Dashboard windows launch automatically when simulation completes.
+        Close all windows to terminate the program cleanly.
+
+  Recommended Dashboard Combinations:
+    ┌─────────────────────────┬───────────────────────────────────┐
+    │ Use Case                │ Enable Dashboards                 │
+    ├─────────────────────────┼───────────────────────────────────┤
+    │ Quick Results           │ B only (QA Metrics)               │
+    │ Standard Analysis       │ A + B (Temporal + QA)             │
+    │ Full Investigation      │ A + B + C (add Snapshot)          │
+    │ Mode Detection Study    │ B + D (QA + Modal Stream)         │
+    │ Complete Report         │ A + B + C + E (skip D)            │
+    │ Fast Turnaround         │ None (check logs only)            │
+    │ Paper Figures           │ C only (high-quality snapshot)    │
+    └─────────────────────────┴───────────────────────────────────┘
+
+  Performance Tips:
+    • Disable Dashboard E for routine tests (resource intensive)
+    • Lower Step Delay to 1.0s for quick review
+    • Use Dashboard C alone for publication-quality figures
+    • Enable all dashboards only for final demonstrations
+
+file_format: 1

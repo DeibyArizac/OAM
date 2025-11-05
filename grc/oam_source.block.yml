@@ -1,0 +1,60 @@
+id: oam_source
+label: OAM Source
+category: '[OAM]'
+
+parameters:
+- id: message_text
+  label: Message Text
+  dtype: string
+  default: 'UIS'
+  hide: none
+- id: symbol_rate
+  label: Symbol Rate (Hz)
+  dtype: int
+  default: 32000
+  hide: none
+
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+
+templates:
+  imports: from oam_source_wr import oam_source_wr
+  make: oam_source_wr(message_text=${message_text}, symbol_rate=${symbol_rate})
+
+documentation: |-
+  OAM Source Block - Main Pipeline Executor
+
+  This block executes the complete OAM communication pipeline:
+  - Message generation with STX/ETX framing
+  - OAM encoding to Laguerre-Gaussian modes
+  - Atmospheric channel simulation
+  - Symbol decoding and recovery
+  - Automatic dashboard visualization
+
+  IMPORTANT: The other blocks (Encoder, Channel, Decoder, Visualizer)
+  only configure parameters. This Source block executes all processing.
+
+  Parameters:
+    - Message Text: ASCII text to transmit (max 50 chars recommended)
+                    Use simple characters (A-Z, 0-9) for best results
+                    Example: "HELLO", "TEST123", "OAM"
+
+    - Symbol Rate: Symbol transmission rate in Hz (1-1000000 Hz)
+                   IMPORTANT: Theoretical parameter for throughput analysis
+                   - Does NOT affect simulation execution time
+                   - DOES affect throughput metrics shown in Dashboard E
+                   - Used to calculate: Bitrate = Symbol_Rate × Bits_per_Symbol
+                   Example: 32 kHz × 4 bits/symbol = 128 kbps theoretical
+
+  Output: Trigger signal for GNU Radio flowgraph (actual data flows via internal pipeline)
+
+  Quick Start Examples:
+    Scenario          Message    Symbol Rate
+    ─────────────────────────────────────────
+    Quick Test        "H"        32000 Hz
+    Standard Demo     "HELLO"    32000 Hz
+    Full Message      "TEST"     100000 Hz
+
+file_format: 1

@@ -1,0 +1,149 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: oam_complete_flowgraph
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: python3 -u {filename}
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: OAM Complete System - Optical Communication via Orbital Angular Momentum
+    window_size: (1400,800)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '32000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [216, 20.0]
+    rotation: 0
+    state: enabled
+- name: oam_channel_0
+  id: oam_channel
+  parameters:
+    affinity: ''
+    alias: ''
+    cn2: 4e-17
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    propagation_distance: '5'
+    snr_target: '30'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [528, 252.0]
+    rotation: 0
+    state: enabled
+- name: oam_decoder_0
+  id: oam_decoder
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    grid_size: '512'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    rx_aperture_size: '35'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [736, 260.0]
+    rotation: 0
+    state: enabled
+- name: oam_encoder_0
+  id: oam_encoder
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    grid_size: '512'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_oam_modes: '6'
+    tx_aperture_size: '35'
+    tx_power: '20'
+    wavelength: '630'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [304, 236.0]
+    rotation: 0
+    state: enabled
+- name: oam_source_0
+  id: oam_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    data_rate_multiplier: '1.0'
+    maxoutbuf: '0'
+    message_text: UIS
+    minoutbuf: '0'
+    symbol_rate: '32000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [80, 252.0]
+    rotation: 0
+    state: enabled
+- name: oam_visualizer_0
+  id: oam_visualizer
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dashboard_step_delay: '3.0'
+    enable_dashboard_a: 'True'
+    enable_dashboard_b: 'True'
+    enable_dashboard_c: 'True'
+    enable_dashboard_d: 'True'
+    enable_dashboard_e: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 228.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [oam_channel_0, '0', oam_decoder_0, '0']
+- [oam_decoder_0, '0', oam_visualizer_0, '0']
+- [oam_encoder_0, '0', oam_channel_0, '0']
+- [oam_source_0, '0', oam_encoder_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.9.2

@@ -1,0 +1,178 @@
+OAM OPTICAL COMMUNICATION SYSTEM - GITHUB UPLOAD GUIDE
+======================================================
+
+Repository: https://github.com/DeibyArizac/OAM
+Author: Deiby Fernando Ariza Cadena
+Institution: Universidad Industrial de Santander (UIS)
+
+PREPARATION STATUS
+------------------
+[OK] README.md - Professional documentation created
+[OK] requirements.txt - Python dependencies documented
+[OK] install.sh - Installation script ready
+[OK] .gitignore - Configured for Python/GNU Radio
+[OK] Core modules - All Python files ready
+[OK] GNU Radio blocks - 5 block definitions in grc/
+[OK] System validated - All imports working
+
+FILES TO UPLOAD
+---------------
+
+1. Documentation:
+   - README.md (21KB)
+   - requirements.txt (1.2KB)
+   - install.sh (2KB)
+   - INSTALACION.txt (existing Spanish documentation)
+
+2. Core System Modules:
+   - oam_complete_system.py
+   - oam_source.py
+   - oam_encoder.py
+   - oam_channel.py
+   - oam_decoder.py
+   - oam_visualizer.py
+
+3. GNU Radio Wrappers:
+   - oam_source_wr.py
+   - oam_encoder_wr.py
+   - oam_channel_wr.py
+   - oam_decoder_wr.py
+   - oam_visualizer_wr.py
+
+4. System Infrastructure:
+   - oam_system_config.py
+   - config_manager.py
+   - pipeline.py
+   - oam_logging.py
+   - gnuradio_cache.py
+   - run_oam_pipeline.py
+
+5. GNU Radio Block Definitions (grc/):
+   - oam_source.block.yml
+   - oam_encoder.block.yml
+   - oam_channel.block.yml
+   - oam_decoder.block.yml
+   - oam_visualizer.block.yml
+
+6. Example Flowgraph:
+   - oam_complete_flowgraph.grc
+   - oam_complete_flowgraph.py
+
+7. Configuration:
+   - .gitignore
+   - __init__.py
+
+FILES TO EXCLUDE (handled by .gitignore)
+-----------------------------------------
+- current_run/ (simulation results)
+- pipeline_logs/ (execution logs)
+- __pycache__/ (Python bytecode)
+- *.npz (large data files)
+- *.log (log files)
+- *.bin (binary outputs)
+- *.backup (backup files)
+
+UPLOAD COMMANDS
+---------------
+
+Option A: Using Git Command Line
+---------------------------------
+
+cd /opt/OAM_System
+
+# Initialize repository (if not already initialized)
+git init
+
+# Add remote (if not already added)
+git remote add origin https://github.com/DeibyArizac/OAM.git
+
+# Stage all files (respecting .gitignore)
+git add .
+
+# Create commit
+git commit -m "Initial release: OAM Optical Communication System v1.0
+
+- Complete OAM encoder/decoder implementation
+- GNU Radio custom blocks integration
+- Multi-dashboard visualization system
+- Atmospheric turbulence simulation
+- Comprehensive documentation and examples
+- Professional README and installation guide"
+
+# Push to GitHub
+git push -u origin main
+
+# If branch is named 'master' instead of 'main':
+# git push -u origin master
+
+
+Option B: Using GitHub Desktop
+-------------------------------
+1. Open GitHub Desktop
+2. File -> Add Local Repository
+3. Choose /opt/OAM_System
+4. Review changes (should respect .gitignore)
+5. Write commit message (see above)
+6. Push to origin
+
+
+Option C: Using GitHub Web Interface
+-------------------------------------
+1. Go to https://github.com/DeibyArizac/OAM
+2. Click "Add file" -> "Upload files"
+3. Drag and drop all files EXCEPT those in .gitignore
+4. Write commit message
+5. Click "Commit changes"
+
+
+VERIFICATION AFTER UPLOAD
+--------------------------
+
+1. Check repository structure on GitHub:
+   - README.md displays correctly on main page
+   - All folders visible (grc/, etc.)
+   - No large binary files (.npz, .log)
+
+2. Test installation from GitHub:
+   git clone https://github.com/DeibyArizac/OAM.git
+   cd OAM
+   ./install.sh
+   pip3 install -r requirements.txt
+
+3. Verify README rendering:
+   - Proper markdown formatting
+   - All sections visible
+   - Links working
+
+RECOMMENDED GITHUB SETTINGS
+----------------------------
+
+1. Repository Settings:
+   - Description: "Orbital Angular Momentum optical communication system for GNU Radio"
+   - Topics: optical-communications, oam, gnu-radio, python, atmospheric-turbulence
+   - License: Add appropriate academic/research license
+
+2. Repository Features:
+   - Enable Issues (for bug reports)
+   - Enable Discussions (for community questions)
+   - Enable Wiki (optional, for extended documentation)
+
+3. Branch Protection (optional):
+   - Protect main branch
+   - Require pull request reviews
+   - Enable status checks
+
+CONTACT FOR SUPPORT
+-------------------
+If you encounter issues during upload:
+
+Author: Deiby Fernando Ariza Cadena
+Email: deibyarizac@gmail.com
+GitHub: @DeibyArizac
+
+Director: Dr. Omar Javier Tíjaro Rojas
+Email: ojtijaro@uis.edu.co
+
+---
+Generated: October 2024
+System Version: 1.0 (Production7)

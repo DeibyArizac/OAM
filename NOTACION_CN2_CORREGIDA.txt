@@ -1,0 +1,144 @@
+================================================================================
+                    RESUMEN: CORRECCIÓN DE NOTACIÓN Cₙ²
+================================================================================
+
+✅ ARCHIVOS ACTUALIZADOS:
+
+   1. /opt/OAM_System/grc/oam_channel.block.yml
+   2. /mnt/e/U/T E S I S/OAM_1.0/GNU_Radio_Production7/grc/oam_channel.block.yml
+   3. /root/.grc_gnuradio/blocks/oam_channel.block.yml
+   4. /home/oamuser/.grc_gnuradio/blocks/oam_channel.block.yml
+
+================================================================================
+                        COMPARACIÓN VISUAL
+================================================================================
+
+❌ ANTES (notación incorrecta):
+   
+   Cn² (log10)
+   ^^
+   ||
+   |└─ No es subíndice
+   └── No es subíndice
+
+   Cn²: Atmospheric turbulence
+   Value: 10^-17 to 10^-13 m^-2/3
+          ^^^^^^           ^^^^^^
+          Exponentes ASCII (poco legible)
+
+
+✅ DESPUÉS (notación correcta):
+
+   Cₙ² (log₁₀)
+    ↓ ↓    ↓↓
+    n 2    10
+    └─┘    └─┘
+   sub super sub
+
+   Cₙ²: Atmospheric turbulence
+   Value: 10⁻¹⁷ to 10⁻¹³ m⁻²/³
+          ^^^^     ^^^^  ^^^^
+          Exponentes Unicode (matemáticamente correctos)
+
+================================================================================
+                      FUNDAMENTO FÍSICO
+================================================================================
+
+Cₙ² (C-sub-n-squared) representa la CONSTANTE DE ESTRUCTURA DEL 
+ÍNDICE DE REFRACCIÓN atmosférico en la teoría de turbulencia de Kolmogorov.
+
+Definición física:
+   Cₙ²(h) = ⟨[n(r₁) - n(r₂)]²⟩
+            ───────────────────
+                  r^(2/3)
+
+Donde:
+   • n(r) = índice de refracción en posición r
+   • r = |r₁ - r₂| = separación espacial
+   • ⟨·⟩ = promedio estadístico (ensemble average)
+   • h = altura sobre el nivel del mar
+
+Unidades: m⁻²/³  (metros a la potencia -2/3)
+
+Rango típico: 10⁻¹⁷ m⁻²/³ (lab) a 10⁻¹³ m⁻²/³ (turbulencia fuerte)
+
+================================================================================
+                   TABLA DE VALORES DE REFERENCIA
+================================================================================
+
+┌──────────────────────┬─────────┬───────────────┬──────────────────────┐
+│ Condición Atmosférica│ log₁₀Cₙ²│  Cₙ² (m⁻²/³) │ Descripción          │
+├──────────────────────┼─────────┼───────────────┼──────────────────────┤
+│ Laboratorio          │   -17   │   10⁻¹⁷       │ Sin turbulencia      │
+│ Noche despejada      │   -16   │   10⁻¹⁶       │ Turbulencia mínima   │
+│ Día despejado        │   -15   │   10⁻¹⁵       │ Turbulencia débil    │
+│ Día moderado         │   -14   │   10⁻¹⁴       │ Turbulencia moderada │
+│ Día con viento       │   -13   │   10⁻¹³       │ Turbulencia fuerte   │
+│ Turbulencia extrema  │   -12   │   10⁻¹²       │ Condiciones extremas │
+└──────────────────────┴─────────┴───────────────┴──────────────────────┘
+
+Nota: Valores medidos típicamente a nivel del suelo (h ≈ 0-10 m)
+
+================================================================================
+                    IMPACTO EN SISTEMAS OAM
+================================================================================
+
+El parámetro Cₙ² determina la intensidad de los siguientes efectos en 
+la propagación de haces OAM:
+
+1. Esparcimiento del haz (beam spreading)
+   • Proporcional a Cₙ² × L^(11/6)  donde L = distancia de propagación
+
+2. Centelleo de intensidad (scintillation)
+   • Índice de centelleo σ²ᵢ ∝ Cₙ² × k^(7/6) × L^(11/6)
+   • k = 2π/λ = número de onda
+
+3. Deterioro de modos OAM (modal crosstalk)
+   • Crosstalk aumenta exponencialmente con Cₙ²
+   • Modos de mayor |ℓ| son más susceptibles
+
+4. Wandering del haz (beam wander)
+   • Desplazamiento RMS ∝ √(Cₙ² × L³)
+
+================================================================================
+                   ECUACIÓN DE RYTOV (REFERENCIA)
+================================================================================
+
+El parámetro de Rytov σ²ᴿ caracteriza la intensidad de la turbulencia:
+
+   σ²ᴿ = 1.23 × Cₙ² × k^(7/6) × L^(11/6)
+
+Régimen de turbulencia:
+   • σ²ᴿ < 0.3  → Débil (válida teoría de Rytov)
+   • σ²ᴿ ≈ 1    → Moderada (régimen de transición)
+   • σ²ᴿ > 1    → Fuerte (saturación de centelleo)
+
+Para el sistema OAM con λ=630nm, L=50m:
+   • Cₙ² = 10⁻¹⁵ → σ²ᴿ ≈ 0.0003 (régimen débil ✓)
+   • Cₙ² = 10⁻¹⁴ → σ²ᴿ ≈ 0.003  (régimen débil ✓)
+   • Cₙ² = 10⁻¹³ → σ²ᴿ ≈ 0.03   (régimen débil ✓)
+
+================================================================================
+                       REFERENCIAS ACADÉMICAS
+================================================================================
+
+[1] Andrews, L. C., & Phillips, R. L. (2005). 
+    "Laser Beam Propagation through Random Media" (2nd ed.)
+    SPIE Press. ISBN: 0-8194-5948-8
+
+[2] Tyson, R. K. (2015). 
+    "Principles of Adaptive Optics" (4th ed.)
+    CRC Press. ISBN: 978-1-4398-0859-3
+
+[3] Kolmogorov, A. N. (1941). 
+    "The local structure of turbulence in incompressible viscous fluid"
+    Proceedings of the USSR Academy of Sciences, 30, 301-305.
+
+[4] Tatarskii, V. I. (1961). 
+    "Wave Propagation in a Turbulent Medium"
+    McGraw-Hill, New York.
+
+================================================================================
+
+📝 Archivo guardado en: /tmp/notacion_cn2_resumen.txt
+

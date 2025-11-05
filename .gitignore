@@ -1,0 +1,272 @@
+# OAM Optical Communication System - Git Ignore
+# Repository: https://github.com/DeibyArizac/OAM
+
+# ============================================================================
+# Python
+# ============================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ============================================================================
+# GNU Radio
+# ============================================================================
+
+# GNU Radio generated files
+*.pyc
+*.pyo
+*.grc~
+*.grc.bak
+
+# GNU Radio temporary files (untitled projects)
+untitled.grc
+untitled.py
+untitled*.grc
+untitled*.py
+
+# GNU Radio flowgraph Python output (keep .grc, ignore .py if auto-generated)
+# Uncomment if flowgraph .py files are auto-generated:
+# oam_complete_flowgraph.py
+
+# ============================================================================
+# OAM System Specific
+# ============================================================================
+
+# Simulation results and cache
+current_run/
+runs/
+pipeline_logs/
+*.log
+
+# Binary output data
+*.bin
+datos_decodificados.bin
+
+# Temporary and backup files
+*.backup
+*.bak
+*~
+.*.swp
+.*.swo
+
+# Internal operation logs
+*_SUCCESS.txt
+*_LOG.txt
+
+# Configuration cache
+config_hash.txt
+.done
+
+# Large data files (NPZ, HDF5)
+*.npz
+*.h5
+*.hdf5
+
+# Pickle files (optional - uncomment if you want to version control them)
+# *.pkl
+# *.pickle
+
+# ============================================================================
+# Operating System
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.directory
+.Trash-*
+.nfs*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# ============================================================================
+# IDEs and Editors
+# ============================================================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+.history/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ============================================================================
+# Documentation
+# ============================================================================
+
+# LaTeX temporary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# ============================================================================
+# Compressed Archives
+# ============================================================================
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ============================================================================
+# Keep Important Files
+# ============================================================================
+
+# Force include important configuration files
+!oam_system_config.py
+!config_manager.py
+
+# Force include GNU Radio block definitions
+!grc/*.block.yml
+
+# Force include installation scripts
+!install.sh
+!requirements.txt
+!README.md
