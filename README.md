@@ -13,9 +13,9 @@
 
 **A complete optical communication system based on Orbital Angular Momentum (OAM) of light**
 
-[![Quick Start](https://img.shields.io/badge/📖-Quick_Start-blue?style=for-the-badge)](#-quick-start)
+[![Quick Start](https://img.shields.io/badge/-Quick_Start-blue?style=for-the-badge)](#-quick-start)
 [![Installation](https://img.shields.io/badge/-Installation-green?style=for-the-badge)](#-installation)
-[![Documentation](https://img.shields.io/badge/📚-Documentation-orange?style=for-the-badge)](#-documentation)
+[![Documentation](https://img.shields.io/badge/-Documentation-orange?style=for-the-badge)](#-documentation)
 [![Research](https://img.shields.io/badge/-Research-red?style=for-the-badge)](#-research-applications)
 
 ---
@@ -29,7 +29,7 @@
 
 - [ Overview](#-overview)
 - [ Features](#-features)
-- [🚀 Quick Start](#-quick-start)
+- [ Quick Start](#-quick-start)
 - [ Installation](#-installation)
 - [ Usage](#-usage)
 - [ Mathematical Foundation](#-mathematical-foundation)
@@ -38,7 +38,7 @@
 - [ Configuration](#-configuration)
 - [ Dashboard System](#-dashboard-system)
 - [ Troubleshooting](#-troubleshooting)
-- [📚 Research Applications](#-research-applications)
+- [ Research Applications](#-research-applications)
 - [ Authors](#-authors)
 - [ License](#-license)
 - [ Acknowledgments](#-acknowledgments)
@@ -119,7 +119,7 @@ This project implements a **sophisticated optical communication system** that le
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Installation (5 minutes)
 
@@ -653,7 +653,7 @@ Reduce grid size or number of modes in `oam_system_config.py`:
 
 ---
 
-## 📚 Research Applications
+##  Research Applications
 
 This system is designed for research and education in:
 
