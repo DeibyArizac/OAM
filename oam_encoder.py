@@ -14,7 +14,7 @@ Desarrollo: Codificación y Decodificación a partir del Momento Angular Orbital
 
 Autor: Deiby Fernando Ariza Cadena
 Director: Dr. Omar Javier Tíjaro Rojas (ojtijaro@uis.edu.co)
-Institución: Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones (E³T)
+Institución: Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones (E3T)
              Universidad Industrial de Santander
 """
 

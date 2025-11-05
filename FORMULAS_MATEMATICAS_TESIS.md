@@ -4,7 +4,7 @@
 **Autor:** Deiby Fernando Ariza Cadena  
 **Código:** 2195590  
 **Director:** Dr. Omar Javier Tíjaro Rojas  
-**Universidad Industrial de Santander - Escuela E³T**
+**Universidad Industrial de Santander - Escuela E3T**
 
 ---
 

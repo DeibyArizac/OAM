@@ -3023,7 +3023,7 @@ def render_dashboard_metrics_summary(run_id=None, pickle_path=None, style="dark"
 
     # Créditos en esquina inferior derecha
     fig.text(0.99, 0.01,
-            'Deiby Ariza & Dr. Omar Tíjaro\nUniversidad Industrial de Santander - E³T',
+            'Deiby Ariza & Dr. Omar Tíjaro\nUniversidad Industrial de Santander - E3T',
             ha='right', va='bottom', fontsize=7,
             alpha=0.5, style='italic')
 

@@ -317,7 +317,7 @@ Key equations:
 - **Email**: deibyarizac@gmail.com
 - **GitHub Issues**: https://github.com/DeibyArizac/OAM/issues
 - **Institution**: Universidad Industrial de Santander (UIS)
-- **School**: Electrical, Electronic and Telecommunications Engineering (E³T)
+- **School**: Electrical, Electronic and Telecommunications Engineering (E3T)
 
 ### Academic Supervision
 - **Director**: Dr. Omar Javier Tíjaro Rojas

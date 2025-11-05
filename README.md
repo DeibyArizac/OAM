@@ -697,7 +697,7 @@ Typical performance on a modern workstation (Intel i7, 16GB RAM):
 </table>
 
 **Institution:**  
-School of Electrical, Electronic and Telecommunications Engineering (E³T)  
+School of Electrical, Electronic and Telecommunications Engineering (E3T)  
 Universidad Industrial de Santander, Colombia
 
 ---
@@ -712,7 +712,7 @@ The code is provided for **educational and research purposes**. For commercial u
 
 ##  Acknowledgments
 
-- **Universidad Industrial de Santander** - School of Electrical, Electronic and Telecommunications Engineering (E³T)
+- **Universidad Industrial de Santander** - School of Electrical, Electronic and Telecommunications Engineering (E3T)
 - **GNU Radio Project** - Open-source software-defined radio framework
 - **Research Community** - Contributors to OAM and free-space optical communications research
 

@@ -116,7 +116,7 @@ OAM/
 **Author**: Deiby Fernando Ariza Cadena (Code: 2195590)
 **Director**: Dr. Omar Javier Tíjaro Rojas
 **Institution**: Universidad Industrial de Santander (UIS)
-**School**: Electrical, Electronic and Telecommunications Engineering (E³T)
+**School**: Electrical, Electronic and Telecommunications Engineering (E3T)
 
 ---
 
